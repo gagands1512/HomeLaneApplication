@@ -1,6 +1,12 @@
 package com.cyient.test;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -16,7 +22,7 @@ import com.cyient.utilites.DataProviderUtils;
 public class SignInTest extends WebDriverWrapper{
 
 	@Test(dataProvider="emptyMobileNoExcelData",dataProviderClass = DataProviderUtils.class)
-		public void emptyPhoneNo(String username,String email,String pincode,String expectedValue) {
+		public void emptyPhoneNo(String username,String email,String pincode,String expectedValue) throws IOException {
 			
 			HomePage hp = new HomePage(driver);
 			hp.clickLoginRegister();
@@ -30,9 +36,12 @@ public class SignInTest extends WebDriverWrapper{
 			String emptyPhoneNumber = driver.findElement(By.id("phone__error")).getText();
 			Assert.assertEquals(emptyPhoneNumber,expectedValue);
 			
+			File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(screenshotFile, new File("D:\\AutomationTraining\\Day3\\New folder\\HomeLaneApplication\\src\\test\\resources\\screenshots\\test.png"));
+			
 		}
 	@Test(dataProvider="emptyEmailExcelData",dataProviderClass = DataProviderUtils.class)
-	   public void emptyEmail(String username,String mobileno,String pincode,String expectedValue) {
+	   public void emptyEmail(String username,String mobileno,String pincode,String expectedValue) throws IOException {
 			HomePage hp = new HomePage(driver);
 			hp.clickLoginRegister();
 			
@@ -44,11 +53,14 @@ public class SignInTest extends WebDriverWrapper{
 			
 			String emptyPhoneNumber = driver.findElement(By.id("email__error")).getText();
 			Assert.assertEquals(emptyPhoneNumber,expectedValue);
+			
+			File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			FileUtils.copyFile(screenshotFile, new File("D:\\AutomationTraining\\Day3\\New folder\\HomeLaneApplication\\src\\test\\resources\\screenshots\\test2.png"));
 		   
 	   }
 	
 	@Test(dataProvider="placeOrderExcelData",dataProviderClass = DataProviderUtils.class)
-	public void placeAnOrder(String email,String mobileno,String expectedValue) throws InterruptedException {
+	public void placeAnOrder(String email,String mobileno,String expectedValue) throws InterruptedException, IOException {
 		  HomePage hp = new HomePage(driver);
 		  hp.clickOnHomeOffice();
 		
@@ -67,6 +79,9 @@ public class SignInTest extends WebDriverWrapper{
 		  
 		  String emptyPincode = driver.findElement(By.id("pincode__error")).getText();
 		  Assert.assertEquals(emptyPincode,expectedValue);	
+		  
+		  File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+		  FileUtils.copyFile(screenshotFile, new File("D:\\AutomationTraining\\Day3\\New folder\\HomeLaneApplication\\src\\test\\resources\\screenshots\\test3.png"));
 		 
 	}
 		
