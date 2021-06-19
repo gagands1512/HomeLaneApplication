@@ -8,6 +8,7 @@
           <include name="placeAnOrder"/>
           <include name="tearDown"/>
           <include name="setup"/>
+          <include name="emptyPhoneNo" invocation-numbers="0"/>
         </methods>
       </class> <!-- com.cyient.test.SignInTest -->
     </classes>

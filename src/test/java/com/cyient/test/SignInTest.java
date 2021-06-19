@@ -22,7 +22,7 @@ import com.cyient.utilites.DataProviderUtils;
 public class SignInTest extends WebDriverWrapper{
 
 	@Test(dataProvider="emptyMobileNoExcelData",dataProviderClass = DataProviderUtils.class)
-		public void emptyPhoneNo(String username,String email,String pincode,String expectedValue) throws IOException {
+		public void emptyPhoneNo(String username,String email,String pincode,String expectedValue) throws IOException{
 			
 			HomePage hp = new HomePage(driver);
 			hp.clickLoginRegister();
@@ -56,7 +56,6 @@ public class SignInTest extends WebDriverWrapper{
 			
 			File screenshotFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
 			FileUtils.copyFile(screenshotFile, new File("D:\\AutomationTraining\\Day3\\New folder\\HomeLaneApplication\\src\\test\\resources\\screenshots\\test2.png"));
-		   
 	   }
 	
 	@Test(dataProvider="placeOrderExcelData",dataProviderClass = DataProviderUtils.class)
